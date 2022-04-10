@@ -1,0 +1,63 @@
+/*ican use java script*/
+.form-control.success input /* epo success means -java script use pannaporom , namba kutugura name mail id crt ah irutha green color la mention aagom*/
+{
+    border-color: #32CD32;
+}
+
+.form-control.error input
+{
+    border-color: #red;   
+}
+
+
+.form-control i /*icon inside the box kondu varathuku */
+{
+    visibility: visible;
+    position: absolute;
+    top:40px;
+    right: 10px;
+
+}
+
+.form-control.success i.fa-check-circle
+{
+    color: #32CD32;
+    visibility: visible; /*color ra katum*/
+
+}
+
+.form-control.error i.fa-exclamation-circle
+{
+    color: red;
+    visibility: visible; /*color ra katum*/
+    
+}
+
+.form-control small{
+    color: red;
+    position: absolute; /* position na atha place ah viitu move aagathu*/
+    left: 0;
+    bottom: 0; 
+    visibility: hidden; /*namba incrt kututhatha red colr la error showaaganum*/
+
+
+}
+
+.form-control.error small
+{
+    visibility: visible;  /* error ra iruthavisiblrpannurathuku*/
+
+}
+
+.form button{
+    background-color: #080b69;
+    border: none;
+    color: white;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    padding:10px;
+    border-radius: 4px;
+}
+

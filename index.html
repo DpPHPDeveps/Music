@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM VALIDATION</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="page2.html">
+
+    <script src="https://kit.fontawesome.com/9479ea0219.js" crossorigin="anonymous"></script>
+  
+
+</head>
+<body>
+    
+    
+    <div  class="container">
+    <div class="header">
+        <img src="user1.jpg" alt="Avatar" class="avatar">
+        <h2> Sign Up </h2>
+    </div>
+    <form action="https://sheetdb.io/api/v1/oauxwjdfqlcpr"  method="GET" class="form" id="form">
+        <div class="form-control">
+       
+        <label for="Username"><b>Username</b></label>
+        <input type="text" placeholder="username" name="Username" id="Username" required> <!--required -pls fill out this field-->
+      
+ 
+    </div>    
+    
+    <div class="form-control">
+       
+        <label for="email"><b>Email id</b></label>
+        <input type="text" placeholder="abcd@gmail.com" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+        
+        
+        
+    </div>   
+
+    <div class="form-control">
+       
+        <label for="psw"><b>Password</b></label>
+         <input type="password" placeholder="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+      
+        
+    </div>  
+
+
+    <div class="form-control">
+       
+        <label for="pswrepeat"><b>Comfirm password</b></label>
+        <input type="Password" placeholder="password" name="pswrepeat"  id="ComfirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        
+     </div> 
+            <button type="reset">Reset</button>
+            <button type="submit" >Login</button>
+            <br>
+            <div class="psw"><a href="#">Forgotten password?</a></div>
+            
+</form>
+</div>
+<!--NEW-->
+
+<div id="message">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>
+<!--EMAILID 1TO 4 LINE---GOOGLE SHEET-->
+<script>
+
+ 
+    function myFunction() {
+  var x = document.getElementById("myEmail").pattern;
+  document.getElementById("demo").innerHTML = x;
+}
+
+
+    var form = document.getElementById('form');
+    form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+      method : "POST",
+      body: new FormData(document.getElementById("form")),
+  }).then(
+      response => response.json()
+  ).then((html) => {
+    // you can put any JS code here
+    window.open('page2.html', '_blank');
+
+  });
+});
+</script>
+
+
+<script>
+var myInput = document.getElementById("psw");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+
+</script>
+
+
+
+<script type="text/javascript">  
+    function create_account(){  
+    var Username=document.getElementById("Username").value;  
+    var email=document.getElementById("email").value;  
+    var Password=document.getElementById("Password").value;  
+    var ComfirmPassword=document.getElementById("ComfirmPassword").value;  
+    //Code for password validation  
+            var letters = /^[A-Za-z]+$/;  
+            var email_val = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
+    //other validations required code  
+    if(Username==''||email==''||Password==''||ComfirmPassword==''){  
+    alert("Enter each details correctly");  
+    }  
+    else if(!letters.test(Username))  
+            {  
+                alert('Name is incorrect must contain alphabets only');  
+            }  
+    else if (!email_val.test(email))  
+            {  
+                alert('Invalid email format please enter valid email id');  
+            }  
+    else if(Password!=ComfirmPassword)  
+    {  
+    alert("Passwords not matching");  
+    }  
+    else if(document.getElementById("Password").value.length > 12)  
+    {  
+    alert("Password maximum length is 12");  
+    }  
+    else if(document.getElementById("ComfirmPassword").value.length > 6)  
+    {  
+    alert("Password minimum length is 6");  
+    }  
+    else{  
+    alert("Your account has been created successfully... Redirecting to JavaTpoint.com");  
+    </script>
+
+
+
+
+
+</body>
+</html>
